@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML-tränaren | Webbutveckling 1</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="eyebrow">WEBBUTVECKLING 1</p>
+      <h1>HTML-tränaren</h1>
+      <p>Träna inför provet med fyra interaktiva avsnitt.</p>
+    </div>
+  </header>
+
+  <nav class="top-nav" aria-label="Huvudnavigation">
+    <div class="container nav-buttons">
+      <button data-page="home">Startsida</button>
+      <button data-page="quiz">1. Kunskapsfrågor</button>
+      <button data-page="code">2. Skriv kod</button>
+      <button data-page="debug">3. Hitta felen</button>
+      <button data-page="escape">4. Escape Room</button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- STARTSIDA -->
+    <section id="home" class="page">
+      <h2>Välj ett avsnitt</h2>
+      <p>Du kan träna hur många gånger du vill.</p>
+
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-number">01</span>
+          <h3>Kunskapsfrågor</h3>
+          <p>Välj rätt svar och få direkt feedback.</p>
+          <button data-page="quiz">Börja träna →</button>
+        </article>
+
+        <article class="card">
+          <span class="card-number">02</span>
+          <h3>Skriv HTML-kod</h3>
+          <p>Lös praktiska koduppgifter.</p>
+          <button data-page="code">Börja koda →</button>
+        </article>
+
+        <article class="card">
+          <span class="card-number">03</span>
+          <h3>Hitta felen</h3>
+          <p>Markera felaktiga rader i HTML-kod.</p>
+          <button data-page="debug">Felsök →</button>
+        </article>
+
+        <article class="card escape-card">
+          <span class="card-number">04</span>
+          <h3>HTML Escape Room</h3>
+          <p>Lös åtta utmaningar och lås upp alla dörrar.</p>
+          <button data-page="escape">Starta spelet →</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- AVSNITT 1 -->
+    <section id="quiz" class="page" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">AVSNITT 1</p>
+        <h2>Kunskapsfrågor</h2>
+        <p>Välj en station eller gör ett blandat sluttest.</p>
+      </div>
+
+      <div class="panel">
+        <label for="quizStation">Välj station</label>
+        <select id="quizStation"></select>
+        <button id="startQuiz">Starta station</button>
+      </div>
+
+      <div id="quizBox" class="panel" hidden>
+        <p id="quizProgress" class="progress-text"></p>
+        <div class="progress-track">
+          <div id="quizBar" class="progress-fill"></div>
+        </div>
+        <h3 id="quizQuestion"></h3>
+        <div id="quizOptions" class="option-list"></div>
+        <p id="quizFeedback" class="feedback" role="status"></p>
+        <button id="checkQuiz">Kontrollera</button>
+        <button id="nextQuiz" hidden>Nästa fråga →</button>
+      </div>
+    </section>
+
+    <!-- AVSNITT 2 -->
+    <section id="code" class="page" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">AVSNITT 2</p>
+        <h2>Skriv HTML-kod</h2>
+        <p>Här ska du själv skriva koden. Du får feedback
+           på vilka krav du har uppfyllt.</p>
+      </div>
+
+      <div class="panel">
+        <label for="codeStation">Välj kodstation</label>
+        <select id="codeStation"></select>
+
+        <h3 id="codeTitle"></h3>
+        <p id="codeTask"></p>
+
+        <label for="codeInput">Din kod</label>
+        <textarea id="codeInput" rows="12"
+                  spellcheck="false"
+                  placeholder="Skriv din HTML-kod här..."></textarea>
+
+        <div class="button-row">
+          <button id="checkCode">Kontrollera kod</button>
+          <button id="hintCode" class="secondary">Ledtråd</button>
+          <button id="resetCode" class="secondary">Rensa</button>
+        </div>
+
+        <p id="codeHint" class="hint" hidden></p>
+        <div id="codeFeedback" role="status"></div>
+      </div>
+    </section>
+
+    <!-- AVSNITT 3 -->
+    <section id="debug" class="page" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">AVSNITT 3</p>
+        <h2>Hitta felen</h2>
+        <p>Klicka på alla kodrader som innehåller fel.
+           Det kan finnas flera fel i samma övning.</p>
+      </div>
+
+      <div class="panel">
+        <label for="debugStation">Välj felsökningsövning</label>
+        <select id="debugStation"></select>
+
+        <h3 id="debugTitle"></h3>
+        <p id="debugTask"></p>
+
+        <div id="debugLines" class="code-lines"></div>
+
+        <p id="debugCount"></p>
+
+        <div class="button-row">
+          <button id="checkDebug">Kontrollera</button>
+          <button id="hintDebug" class="secondary">Ledtråd</button>
+          <button id="resetDebug" class="secondary">Försök igen</button>
+          <button id="nextDebug" class="secondary">Nästa övning →</button>
+        </div>
+
+        <p id="debugHint" class="hint" hidden></p>
+        <div id="debugFeedback" role="status"></div>
+      </div>
+    </section>
+
+    <!-- AVSNITT 4 -->
+    <section id="escape" class="page" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">AVSNITT 4</p>
+        <h2>HTML Escape Room</h2>
+        <p>Åtta låsta dörrar. Varje dörr kräver en
+           fungerande HTML-lösning.</p>
+      </div>
+
+      <div class="panel">
+        <div class="escape-top">
+          <strong id="escapeProgress">Dörr 1 av 8</strong>
+          <span id="escapeMistakes">Försök att rätta: 0</span>
+        </div>
+
+        <div id="escapeSteps" class="escape-steps"></div>
+
+        <div class="door-scene">
+          <div class="door-frame">
+            <div id="escapeDoor" class="door">
+              <span id="doorLabel">DÖRR 1</span>
+              <span id="doorLock" class="door-lock">🔒</span>
+            </div>
+          </div>
+          <p id="doorStatus">Lös uppgiften för att öppna dörren.</p>
+        </div>
+
+        <h3 id="escapeTitle"></h3>
+        <p id="escapeTask"></p>
+
+        <div id="escapeOrderArea" hidden>
+          <p>Flytta raderna med pilarna:</p>
+          <div id="escapeOrderLines" class="order-lines"></div>
+        </div>
+
+        <div id="escapeEditorArea">
+          <label for="escapeInput">Din HTML-kod</label>
+          <textarea id="escapeInput" rows="9"
+                    spellcheck="false"></textarea>
+        </div>
+
+        <div class="button-row">
+          <button id="checkEscape">Testa lösningen</button>
+          <button id="hintEscape" class="secondary">Ledtråd</button>
+          <button id="nextEscape" hidden>Öppna nästa dörr →</button>
+          <button id="restartEscape" class="secondary">Starta om</button>
+        </div>
+
+        <p id="escapeHint" class="hint" hidden></p>
+        <div id="escapeFeedback" class="feedback" role="status"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>HTML-tränaren · Webbutveckling 1</p>
+  </footer>
+</body>
+</html>
